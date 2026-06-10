@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import CursorFollower from "@/components/ui/CursorFollower";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 const font = Inter({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -23,9 +24,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${font.className}  h-full antialiased`}
+      suppressHydrationWarning
     >
+      <body className="min-h-full flex flex-col">
       <CursorFollower />
-      <body className="min-h-full flex flex-col">{children}</body>
+        <ThemeProvider>
+
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
