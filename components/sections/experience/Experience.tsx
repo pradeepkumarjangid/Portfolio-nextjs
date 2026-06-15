@@ -1,211 +1,89 @@
-const experiences = [
-  {
-    company: "Cupid Compusoft",
-    role: "Software Developer",
-    duration: "Mar 2023 - Mar 2025",
-    points: [
-      "Developed responsive web applications",
-      "Worked with React.js, JavaScript and modern UI libraries",
-      "Integrated REST APIs and backend services",
-      "Improved application performance and user experience"
-    ],
-  },
-  {
-    company: "Pine Succeed",
-    role: "Full Stack Developer",
-    duration: "Mar 2025 - Present",
-    points: [
-      "Building scalable web applications",
-      "Working with React.js, Next.js, Node.js",
-      "Developing reusable components and APIs",
-      "Managing frontend and backend integration"
-    ],
-  },
+"use client";
+
+import { motion } from "framer-motion";
+
+const experiences=[
+{
+company:"Pine Succeed",
+role:"Full Stack Developer",
+duration:"Mar 2025 - Present",
+points:[
+"Building scalable web applications",
+"React.js, Next.js, Node.js development",
+"Reusable components and APIs",
+"Frontend & backend integration"
+]
+},
+{
+company:"Cupid Compusoft",
+role:"Software Developer",
+duration:"Mar 2023 - Mar 2025",
+points:[
+"Developed responsive applications",
+"React.js and UI libraries",
+"REST API integration",
+"Improved performance and UX"
+]
+}
 ];
 
 
-export default function Experience() {
+export default function Experience(){
 
-return (
+return <section id="experience" className="px-6 py-28">
 
-<section
-id="experience"
-className="py-24 px-6"
+<div className="mx-auto max-w-5xl">
+
+<p className="text-[var(--primary)]">Career</p>
+<h2 className="mt-2 text-5xl font-bold">Experience</h2>
+
+
+<div className="relative mt-12 space-y-8">
+
+<div className="absolute left-4 h-full w-px bg-[var(--border)]"/>
+
+
+{experiences.map((e,i)=>(
+
+<motion.div
+key={e.company}
+initial={{opacity:0,x:-30}}
+whileInView={{opacity:1,x:0}}
+transition={{delay:i*.1}}
+className="relative pl-12"
 >
 
-<div className="max-w-5xl mx-auto">
+<div className="absolute left-0 top-1 h-8 w-8 rounded-full bg-[var(--primary)] border-4 border-[var(--background)]"/>
 
 
-<h2
-className="
-text-4xl
-font-bold
-text-[var(--text-primary)]
-"
->
-Experience
-</h2>
+<div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
 
+<div className="flex justify-between gap-3 flex-wrap">
 
-
-<div className="mt-12 relative">
-
-
-{/* line */}
-
-<div
-className="
-absolute
-left-4
-top-0
-h-full
-w-px
-bg-[var(--border)]
-"
-/>
-
-
-
-<div className="space-y-10">
-
-
-{
-experiences.map((exp,index)=>(
-
-<div
-key={exp.company}
-
-className="
-relative
-pl-12
-"
->
-
-
-{/* dot */}
-
-<div
-className="
-absolute
-left-0
-top-2
-
-h-8
-w-8
-
-rounded-full
-
-bg-[var(--primary)]
-
-border-4
-border-[var(--background)]
-"
-/>
-
-
-
-<div
-className="
-rounded-2xl
-border
-border-[var(--border)]
-
-bg-[var(--card)]
-
-p-6
-"
->
-
-
-<div
-className="
-flex
-justify-between
-gap-4
-flex-wrap
-"
->
-
-<h3
-className="
-text-xl
-font-bold
-"
->
-{exp.role}
-</h3>
-
-
-<span
-className="
-text-sm
-text-[var(--primary)]
-"
->
-{exp.duration}
-</span>
-
+<h3 className="text-xl font-bold">{e.role}</h3>
+<span className="text-sm text-[var(--primary)]">{e.duration}</span>
 
 </div>
 
+<p className="mt-2 text-[var(--text-secondary)]">{e.company}</p>
 
 
-<p
-className="
-mt-2
-font-medium
-text-[var(--text-secondary)]
-"
->
-{exp.company}
-</p>
+<ul className="mt-4 list-disc space-y-1 ml-5 text-[var(--text-secondary)]">
 
-
-
-<ul
-className="
-mt-4
-space-y-2
-text-[var(--text-secondary)]
-list-disc
-ml-5
-"
->
-
-{
-exp.points.map(point=>(
-
-<li key={point}>
-{point}
-</li>
-
-))
-}
+{e.points.map(p=><li key={p}>{p}</li>)}
 
 </ul>
 
+</div>
 
+</motion.div>
+
+))}
 
 </div>
 
-
 </div>
-
-))
-}
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
 
 </section>
-
-)
 
 }

@@ -1,265 +1,93 @@
 "use client";
 
-import {
-  Code2,
-  Database,
-  Server,
-  Palette,
-  GitBranch,
-} from "lucide-react";
+import { skillGroups } from "@/data/skills";
 import { motion } from "framer-motion";
 
+export default function Skills() {
+  return (
+    <section id="skills" className="py-28 px-6">
+      <div className="max-w-6xl mx-auto">
 
-const skillGroups = [
-  {
-    title:"Frontend",
-    icon:<Code2 size={25}/>,
-    skills:[
-      "React.js",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Ant Design"
-    ]
-  },
+        <div className="mb-14">
+          <p className="text-[var(--primary)]">My Expertise</p>
+          <h2 className="mt-2 text-5xl font-bold text-[var(--text-primary)]">
+            Skills
+          </h2>
+        </div>
 
-  {
-    title:"Backend",
-    icon:<Server size={25}/>,
-    skills:[
-      "Node.js",
-      "Express.js",
-      "REST API",
-      "Authentication"
-    ]
-  },
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
+          {skillGroups.map((group, index) => {
+            let Icon = group.icon
+            return (
+              <motion.div
+                key={group.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="rounded-3xl border border-[var(--border)] bg-[var(--card)]/80 backdrop-blur-xl p-6 shadow-[var(--shadow)] transition hover:-translate-y-2"
+              >
 
-  {
-    title:"Database",
-    icon:<Database size={25}/>,
-    skills:[
-      "MongoDB",
-      "MySQL",
-      "Sequelize"
-    ]
-  },
+                <div className="flex items-center gap-4">
 
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--primary)] text-white">
+                    {/* {group.icon} */}
+                    <Icon size={22}/>
+                  </div>
 
-  {
-    title:"Tools",
-    icon:<GitBranch size={25}/>,
-    skills:[
-      "Git",
-      "GitHub",
-      "Postman",
-      "VS Code"
-    ]
-  }
-];
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                    {group.title}
+                  </h3>
 
+                </div>
 
 
-export default function Skills(){
+                <div className="mt-6 space-y-5">
 
+                  {group.skills.map((skill) => (
 
-return (
+                    <div key={skill.name}>
 
-<section
-id="skills"
-className="py-28 px-6"
->
+                      <div className="mb-2 flex justify-between text-sm">
 
+                        <span className="text-[var(--text-secondary)]">
+                          {skill.name}
+                        </span>
 
-<div className="max-w-6xl mx-auto">
+                        <span className="text-[var(--text-muted)]">
+                          {skill.level}%
+                        </span>
 
+                      </div>
 
-<div className="mb-14">
 
-<p className="text-[var(--primary)]">
-My Expertise
-</p>
+                      <div className="h-1.5 overflow-hidden rounded-full bg-[var(--surface)]">
 
-<h2 className="
-text-5xl
-font-bold
-mt-2
-">
-Skills
-</h2>
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1 }}
+                          className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500"
+                        />
 
-</div>
+                      </div>
 
+                    </div>
 
+                  ))}
 
+                </div>
 
-<div
-className="
-grid
-md:grid-cols-2
+              </motion.div>
 
-gap-6
-"
->
+            )
+          })}
 
+        </div>
 
-{
-skillGroups.map((group,index)=>(
-
-
-<motion.div
-
-key={group.title}
-
-initial={{
-opacity:0,
-y:40
-}}
-
-whileInView={{
-opacity:1,
-y:0
-}}
-
-transition={{
-delay:index*0.1
-}}
-
-className="
-group
-
-rounded-3xl
-
-border
-border-[var(--border)]
-
-bg-[var(--card)]
-
-p-7
-
-hover:-translate-y-2
-
-transition
-
-shadow-[var(--shadow)]
-"
-
->
-
-
-
-<div
-className="
-flex
-items-center
-gap-4
-"
->
-
-
-<div
-className="
-h-12
-w-12
-
-rounded-xl
-
-flex
-items-center
-justify-center
-
-bg-[var(--primary)]
-
-text-white
-"
->
-
-{group.icon}
-
-</div>
-
-
-<h3
-className="
-text-xl
-font-semibold
-"
->
-{group.title}
-</h3>
-
-
-</div>
-
-
-
-
-<div
-className="
-mt-6
-flex
-flex-wrap
-gap-3
-"
->
-
-{
-group.skills.map(skill=>(
-
-<span
-
-key={skill}
-
-className="
-px-4
-py-2
-
-rounded-full
-
-bg-[var(--surface)]
-
-border
-border-[var(--border)]
-
-text-sm
-
-text-[var(--text-secondary)]
-
-group-hover:border-[var(--primary)]
-
-transition
-"
-
->
-
-{skill}
-
-</span>
-
-))
-}
-
-
-</div>
-
-
-</motion.div>
-
-
-))
-}
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-)
-
+      </div>
+    </section>
+  );
 }
